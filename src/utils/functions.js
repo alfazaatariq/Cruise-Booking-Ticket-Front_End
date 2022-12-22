@@ -1,4 +1,4 @@
-const BASE_URL = 'https://ochre-sea-lion-wig.cyclic.app/';
+const BASE_URL = 'https://real-erin-gecko-tie.cyclic.app/';
 
 export const getAllTicket = async () => {
   try {
