@@ -1,6 +1,8 @@
+const BASE_URL = 'https://ivory-giraffe-kit.cyclic.app/';
+
 export const getAllTicket = async () => {
   try {
-    const response = await fetch('http://localhost:5000/api/ticket/getall', {
+    const response = await fetch(`${BASE_URL}api/ticket/getall`, {
       method: 'GET',
       headers: {
         'Content-type': 'application/json',
@@ -30,7 +32,7 @@ export const addNewTicket = async (
       waktu_tiba: waktu_tiba,
       harga: harga,
     };
-    const response = await fetch('http://localhost:5000/api/ticket/store', {
+    const response = await fetch(`${BASE_URL}api/ticket/store`, {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
@@ -63,7 +65,7 @@ export const updateTicketById = async (
       waktu_tiba: waktu_tiba,
       harga: harga,
     };
-    const response = await fetch('http://localhost:5000/api/ticket/update', {
+    const response = await fetch(`${BASE_URL}api/ticket/update`, {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
@@ -82,7 +84,7 @@ export const deleteTicketById = async (ticketID) => {
     const payLoad = {
       ticketID: ticketID,
     };
-    const response = await fetch('http://localhost:5000/api/ticket/delete', {
+    const response = await fetch(`${BASE_URL}api/ticket/delete`, {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
@@ -101,7 +103,7 @@ export const getTicketById = async (ticketID) => {
     const payLoad = {
       ticketID: ticketID,
     };
-    const response = await fetch('http://localhost:5000/api/ticket/show', {
+    const response = await fetch(`${BASE_URL}api/ticket/show`, {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
@@ -122,16 +124,13 @@ export const getTicketsByForm = async (asal, tujuan, tanggal) => {
       tujuan: tujuan,
       tanggal: tanggal,
     };
-    const response = await fetch(
-      'http://localhost:5000/api/ticket/searchtickets',
-      {
-        method: 'POST',
-        headers: {
-          'Content-type': 'application/json',
-        },
-        body: JSON.stringify(payLoad),
-      }
-    );
+    const response = await fetch(`${BASE_URL}api/ticket/searchtickets`, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(payLoad),
+    });
     const { data } = await response.json();
     return data;
   } catch (error) {
@@ -144,16 +143,13 @@ export const getTujuan = async (asal) => {
     const payLoad = {
       asal: asal,
     };
-    const response = await fetch(
-      'http://localhost:5000/api/ticket/searchtujuan',
-      {
-        method: 'POST',
-        headers: {
-          'Content-type': 'application/json',
-        },
-        body: JSON.stringify(payLoad),
-      }
-    );
+    const response = await fetch(`${BASE_URL}api/ticket/searchtujuan`, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(payLoad),
+    });
     const { data } = await response.json();
     const tujuan = data.map((item) => {
       return item.tujuan;
@@ -166,15 +162,12 @@ export const getTujuan = async (asal) => {
 
 export const getAsal = async () => {
   try {
-    const response = await fetch(
-      'http://localhost:5000/api/ticket/searchasal',
-      {
-        method: 'GET',
-        headers: {
-          'Content-type': 'application/json',
-        },
-      }
-    );
+    const response = await fetch(`${BASE_URL}api/ticket/searchasal`, {
+      method: 'GET',
+      headers: {
+        'Content-type': 'application/json',
+      },
+    });
     const { data } = await response.json();
     const asal = data.map((item) => {
       return item.asal;
@@ -200,7 +193,7 @@ export const orderTicket = async (bank, id, total, nama) => {
       tiket_id: id,
       nama: nama,
     };
-    const response = await fetch('http://localhost:5000/api/order/charge', {
+    const response = await fetch(`${BASE_URL}api/order/charge`, {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
@@ -216,15 +209,12 @@ export const orderTicket = async (bank, id, total, nama) => {
 
 export const getOrderStatus = async (order_id) => {
   try {
-    const response = await fetch(
-      `http://localhost:5000/api/order/status/${order_id}`,
-      {
-        method: 'GET',
-        headers: {
-          'Content-type': 'application/json',
-        },
-      }
-    );
+    const response = await fetch(`${BASE_URL}api/order/status/${order_id}`, {
+      method: 'GET',
+      headers: {
+        'Content-type': 'application/json',
+      },
+    });
     const { data } = await response.json();
     return data;
   } catch (error) {
@@ -238,16 +228,13 @@ export const loginUser = async (email, password) => {
       username: email,
       password: password,
     };
-    const response = await fetch(
-      `http://localhost:5000/api/customer/customer-login`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-type': 'application/json',
-        },
-        body: JSON.stringify(payLoad),
-      }
-    );
+    const response = await fetch(`${BASE_URL}api/customer/customer-login`, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(payLoad),
+    });
     const data = await response.json();
     return data;
   } catch (error) {
@@ -263,16 +250,13 @@ export const registerUser = async (name, email, phone, password) => {
       phone: phone,
       password: password,
     };
-    const response = await fetch(
-      `http://localhost:5000/api/customer/customer-register`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-type': 'application/json',
-        },
-        body: JSON.stringify(payLoad),
-      }
-    );
+    const response = await fetch(`${BASE_URL}api/customer/customer-register`, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(payLoad),
+    });
     const data = await response.json();
     return data;
   } catch (error) {
@@ -286,16 +270,13 @@ export const getInvoiceByUserId = async (user_id) => {
     const payLoad = {
       user_id: user_id,
     };
-    const response = await fetch(
-      'http://localhost:5000/api/invoice/show_by_userid',
-      {
-        method: 'POST',
-        headers: {
-          'Content-type': 'application/json',
-        },
-        body: JSON.stringify(payLoad),
-      }
-    );
+    const response = await fetch(`${BASE_URL}api/invoice/show_by_userid`, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(payLoad),
+    });
     const dataJSON = await response.json();
     return dataJSON.response;
   } catch (error) {
@@ -309,16 +290,13 @@ export const getInvoiceByOrderId = async (order_id) => {
     const payLoad = {
       order_id: order_id,
     };
-    const response = await fetch(
-      'http://localhost:5000/api/invoice/show_by_orderid',
-      {
-        method: 'POST',
-        headers: {
-          'Content-type': 'application/json',
-        },
-        body: JSON.stringify(payLoad),
-      }
-    );
+    const response = await fetch(`${BASE_URL}api/invoice/show_by_orderid`, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(payLoad),
+    });
     const dataJSON = await response.json();
     return dataJSON.response;
   } catch (error) {
@@ -332,7 +310,7 @@ export const loginAdmin = async (email, password) => {
       username: email,
       password: password,
     };
-    const response = await fetch(`http://localhost:5000/api/login`, {
+    const response = await fetch(`${BASE_URL}api/login`, {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
@@ -354,7 +332,7 @@ export const registerAdmin = async (name, email, phone, password) => {
       phone: phone,
       password: password,
     };
-    const response = await fetch(`http://localhost:5000/api/register`, {
+    const response = await fetch(`${BASE_URL}api/register`, {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
@@ -370,7 +348,7 @@ export const registerAdmin = async (name, email, phone, password) => {
 
 export const getAllInvoice = async () => {
   try {
-    const response = await fetch('http://localhost:5000/api/invoice/', {
+    const response = await fetch(`${BASE_URL}api/invoice/`, {
       method: 'GET',
       headers: {
         'Content-type': 'application/json',
@@ -388,7 +366,7 @@ export const deleteInvoiceById = async (invoiceID) => {
     const payLoad = {
       invoiceID: invoiceID,
     };
-    const response = await fetch('http://localhost:5000/api/invoice/delete', {
+    const response = await fetch(`${BASE_URL}api/invoice/delete`, {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
@@ -420,7 +398,7 @@ export const userAddInvoice = async (invoice) => {
       total_harga: invoice.total_harga,
       order_id: invoice.order_id,
     };
-    const response = await fetch('http://localhost:5000/api/invoice/store', {
+    const response = await fetch(`${BASE_URL}api/invoice/store`, {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
@@ -466,7 +444,7 @@ export const adminAddInvoice = async (
       total_harga: totalHarga,
       order_id: orderId,
     };
-    const response = await fetch('http://localhost:5000/api/invoice/store', {
+    const response = await fetch(`${BASE_URL}api/invoice/store`, {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
@@ -514,7 +492,7 @@ export const updateInvoiceById = async (
       total_harga: total_harga,
       order_id: order_id,
     };
-    const response = await fetch('http://localhost:5000/api/invoice/update', {
+    const response = await fetch(`${BASE_URL}api/invoice/update`, {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
